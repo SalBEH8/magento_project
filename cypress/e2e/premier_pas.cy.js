@@ -31,10 +31,13 @@ describe('E-commerce Shopping', () => {
     cy.get('.showcart').click() // click sur le panier
     cy.wait(1000)
     cy.get(':nth-child(7) > .secondary > .action > span').click({"force": true}) // sélectionner "proceed to checkout"
-
+    cy.wait(1000)
     // Modifie la quantité du produit
-    cy.get('.control.qty > input').clear().type('2'); // modifie la quantité à 2
-    cy.get('.update-cart-item').click(); // clique sur le bouton de mise à jour
+    cy.get('[id$="-qty"]').clear({force: true}).type('2', {force: true}); // modifie la quantité à 2
+    cy.get('.update').click({force: true});
+    // clique sur le bouton de mise à jour
+
+    cy.get('.checkout-methods-items > :nth-child(1) > .action > span').click()
 
     cy.wait('@waitAddToCart');
   });
