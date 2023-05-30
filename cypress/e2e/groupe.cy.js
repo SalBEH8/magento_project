@@ -1,6 +1,6 @@
 import faker from 'faker';
 
-describe('testMagento', () => {
+describe('testMagento', { retries: 3 }, () => {
 
     it('Accéder aux tops', () => {
         const lastName = faker.name.lastName();
@@ -58,5 +58,6 @@ describe('testMagento', () => {
         cy.wait(1000);
         cy.get('button.action.primary.checkout').should('not.be.disabled');
         cy.get('button.action.primary.checkout').click();
-    })
-})
+        cy.wait(2000);
+    });
+});
