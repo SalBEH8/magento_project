@@ -46,6 +46,7 @@ describe('testMagento', { retries: 3 }, () => {
         cy.get('[name="street[0]"]').type('1 avenue de la libération');
         cy.get('[name="city"]').type('Mérignac');
         cy.get('[name="region_id"]').select('Gironde');
+        cy.screenshot();
         cy.get('[name="postcode"]').type('33700');
         cy.get('[name="telephone"]').type('0603435393');
         cy.wait(1000);
