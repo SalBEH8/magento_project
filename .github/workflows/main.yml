@@ -8,22 +8,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: 14
-
+      - name: Install Yarn
+        run: npm install -g yarn
       - name: Install Dependencies
-        run: npm ci
-
-      - name: Start server
-        run: npm start &
-        env:
-          CI: true
-
+        run: yarn install
       - name: Cypress run
         uses: cypress-io/github-action@v2
-        with:
-          wait-on: 'http://localhost:3000'
-          wait-on-timeout: 60
