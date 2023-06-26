@@ -16,5 +16,7 @@ jobs:
         run: npm install -g yarn
       - name: Install Dependencies
         run: yarn install
+      - name: Install Cypress
+        run: yarn add cypress --dev
       - name: Cypress run
         uses: cypress-io/github-action@v2
