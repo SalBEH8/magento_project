@@ -6,22 +6,22 @@ describe('testMagento', { retries: 3 }, () => {
         const lastName = faker.name.lastName();
         const firstName = faker.name.firstName();
         const email = faker.internet.email();
-        
+
         cy.intercept({
-            url:"https://magento.softwaretestingboard.com/customer/section/load/*",
-            method:"GET",
+            url: "https://magento.softwaretestingboard.com/customer/section/load/*",
+            method: "GET",
         }).as('waitAddToCart');
-        
+
         cy.intercept({
-            url:"https://magento.softwaretestingboard.com/pub/static/version1678540400/frontend/Magento/luma/en_US/Magento_CheckoutAgreements/template/checkout/checkout-agreements.html",
-            method:"GET",
+            url: "https://magento.softwaretestingboard.com/pub/static/version1678540400/frontend/Magento/luma/en_US/Magento_CheckoutAgreements/template/checkout/checkout-agreements.html",
+            method: "GET",
         }).as('waitPayment');
-        
+
         cy.intercept({
-            url:"https://magento.softwaretestingboard.com/pub/static/version1678540400/frontend/Magento/luma/en_US/Magento_Checkout/template/progress-bar.html",
-            method:"GET",
+            url: "https://magento.softwaretestingboard.com/pub/static/version1678540400/frontend/Magento/luma/en_US/Magento_Checkout/template/progress-bar.html",
+            method: "GET",
         }).as('waitShipping');
-        
+
         cy.visit('https://magento.softwaretestingboard.com')
 
         cy.get('#ui-id-4 > .ui-menu-icon').trigger('mouseover')
@@ -53,7 +53,7 @@ describe('testMagento', { retries: 3 }, () => {
         cy.get('tbody > :nth-child(2) > :nth-child(1)').click();
         cy.wait(1000);
         cy.get('#opc-shipping_method > .loading-mask').should('not.exist');
-        
+
         cy.get('button[data-role="opc-continue"]').should('not.be.disabled');
         cy.get('button[data-role="opc-continue"]').click();
         cy.wait(1000);
